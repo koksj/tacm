@@ -1,0 +1,167 @@
+<div class="container">
+  <div class="inner">
+    <mat-card>
+      <mat-card-content>
+        <div>          
+          <form (ngSubmit)="addFarmer()" #farmerForm="ngForm" >
+            
+            <div>
+              <mat-card-title>Farmer Details</mat-card-title>
+            </div>         
+ 
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>First name</mat-label>
+                <input matInput placeholder="First name" [(ngModel)]="farmer.firstName" required name="firstName" #name="ngModel">
+                <mat-hint align="end">Your first name</mat-hint>
+                <mat-icon>person</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Surname</mat-label>
+                <input matInput placeholder="Surname" [(ngModel)]="farmer.lastName" required name="lastName" #name="ngModel">
+                <mat-hint align="end">Your surname</mat-hint>
+                <mat-icon>person</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>ID number</mat-label>
+                <input matInput placeholder="Identity number" [(ngModel)]="farmer.identityNumber" required name="identityNumber" #name="ngModel">
+                <mat-hint align="end">Your SA identity number</mat-hint>
+                <mat-icon>person</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Mobile number</mat-label>
+                <input matInput placeholder="Mobile contact number" [(ngModel)]="farmer.mobileNumber" required name="mobileNumber" #name="ngModel">
+                <mat-hint align="end">Your mobile for example: 0824441234</mat-hint>
+                <mat-icon>contact_phone</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Office number</mat-label>
+                <input matInput placeholder="Office contact number" [(ngModel)]="farmer.officeNumber" name="officeNumber" #name="ngModel">
+                <mat-hint align="end">For example: 0824441235</mat-hint>
+                <mat-icon>contact_phone</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Alternative contact number</mat-label>                
+                <input matInput placeholder="Alternative contact number" [(ngModel)]="farmer.alternativeContactNumber" name="alternativeContactNumber" #name="ngModel">
+                <mat-hint align="end">For example: 0824441236</mat-hint>
+                <mat-icon>contact_phone</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Physical address</mat-label>
+                <input matInput placeholder="Physical address" [(ngModel)]="farmer.physicalAddress" required name="physicalAddress" #name="ngModel"/>
+                <mat-hint align="end">For example: 216 14th Avenue, Fairland, Roodepoort,Gauteng, South Africa, 2195</mat-hint>
+                <mat-icon>home</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Email address</mat-label>
+                <input matInput placeholder="Email address" [(ngModel)]="farmer.email" name="email" #name="ngModel"/>
+                <mat-hint align="end">For example: user@gmail.com</mat-hint>
+                <mat-icon>email</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Alternative email address</mat-label>
+                <input matInput placeholder="Alternative email Address" [(ngModel)]="farmer.alternativeEmailAddress" name="alternativeEmailAddress" #name="ngModel"/>
+                <mat-hint align="end">For example: alternative@gmail.com</mat-hint>
+                <mat-icon>email</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Business name</mat-label>
+                <input matInput placeholder="Company/Business Name" [(ngModel)]="farmer.businessName" name="businessName" #name="ngModel"/>
+                <mat-hint align="end">Business name</mat-hint>
+                <mat-icon>business</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Company registration number</mat-label>
+                <input matInput placeholder="Company Registration Number" [(ngModel)]="farmer.companyRegistrationNumber" name="companyRegistrationNumber" #name="ngModel"/>
+                <mat-hint align="end">Company registration number</mat-hint>
+                <mat-icon>business</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>VAT number</mat-label>
+                <input matInput placeholder="VAT Number" [(ngModel)]="farmer.vatNumber" name="vatNumber" #name="ngModel"/>
+                <mat-hint align="end">VAT number</mat-hint>
+                <mat-icon>business</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Primary head office contact number</mat-label>
+                <input matInput placeholder="Primary Head Office Contact Number" [(ngModel)]="farmer.primaryHeadOfficeContactNumber" name="primaryHeadOfficeContactNumber" #name="ngModel"/>
+                <mat-hint align="end">Primary head office contact number</mat-hint>
+                <mat-icon>business</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Head office physical address</mat-label>
+                <input matInput placeholder="Head office physical address" [(ngModel)]="farmer.headOfficePhysicalAddress" name="headOfficePhysicalAddress" #name="ngModel"/>
+                <mat-hint align="end">Head office physical address</mat-hint>
+                <mat-icon>business</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Name of business representative</mat-label>
+                <input matInput placeholder="Name of business representative" [(ngModel)]="farmer.nameOfBusinessRepresentative" name="nameOfBusinessRepresentative" #name="ngModel"/>
+                <mat-hint align="end">Name of business representative</mat-hint>
+                <mat-icon>business</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Business representative contact number</mat-label>
+                <input matInput placeholder="Business representative contact number" [(ngModel)]="farmer.businessRepresentativeContactNumber" name="businessRepresentativeContactNumber" #name="ngModel"/>
+                <mat-hint align="end">Business representative contact number</mat-hint>
+                <mat-icon>business</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Business representative email address</mat-label>
+                <input matInput placeholder="Business Representative Email Address" [(ngModel)]="farmer.businessRepresentativeEmailAddress" name="businessRepresentativeEmailAddress" #name="ngModel"/>
+                <mat-hint align="end">Business representative email address</mat-hint>
+                <mat-icon>business</mat-icon>
+              </mat-form-field>
+            </div>
+            <div>              
+                <mat-form-field appearance="fill">
+                  <mat-label>Province</mat-label>          
+                  <mat-select [(ngModel)]="farmer.province" required name="province" #name="ngModel">
+                    <mat-option *ngFor="let province of provinces" [value]="province.value">
+                      {{province.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-icon>map</mat-icon>   
+                  <mat-hint align="end">Province</mat-hint>
+                </mat-form-field>
+            </div>
+            <mat-card-actions>
+              <button mat-raised-button color="primary" type="submit">Submit</button>             
+            </mat-card-actions>
+        </form>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>

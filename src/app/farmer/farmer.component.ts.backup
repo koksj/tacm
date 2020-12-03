@@ -1,0 +1,74 @@
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Province } from './province';
+import { FarmerRegistrationService } from '../farmer-registration.service';
+import { Farmer } from './famer';
+import { KeycloakService } from 'keycloak-angular';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-farmer',
+  templateUrl: './farmer.component.html',
+  styleUrls: ['./farmer.component.css']
+})
+export class FarmerComponent implements OnInit {
+
+  provinces: Province[] = [
+    { value: "province-0", viewValue: "Eastern Cape" },
+    { value: "province-1", viewValue: "Free State" },
+    { value: "province-2", viewValue: "Gauteng" },
+    { value: "province-3", viewValue: "KwaZulu-Natal" },
+    { value: "province-4", viewValue: "Limpopo" },
+    { value: "province-5", viewValue: "Mpumalanga" },
+    { value: "province-6", viewValue: "North West" },
+    { value: "province-7", viewValue: "Northern Cape" },
+    { value: "province-8", viewValue: "Western Cape" },
+  ];
+
+  farmer: Farmer = {
+    id: '',
+    firstName: '',
+    lastName: '',
+    identityNumber: '',
+    mobileNumber: '',
+    email: '',
+    businessName: '',
+    physicalAddress: '',
+    companyRegistrationNumber: '',
+    province: ''
+  };
+
+  /*
+  farmerForm: FormGroup = new FormGroup({
+    firstName: new FormControl('', [Validators.required]),
+    lastName:  new FormControl('', [Validators.required])
+  });
+  */
+
+  constructor(private farmerService: FarmerRegistrationService, private keycloakService: KeycloakService) {
+
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('Method not implemented.');
+  }
+
+  ngOnInit(): void {
+
+    /* Get the data from the server  */
+    const uid: any = this.keycloakService.getKeycloakInstance().tokenParsed?.sub;
+    this.farmerService.getFarmer(uid).subscribe(farmer => this.farmer = farmer);    
+  }
+
+  public addFarmer(): void {
+
+    const uid: any = this.keycloakService.getKeycloakInstance().tokenParsed?.sub;
+    this.farmer.id = uid;
+
+    this.farmerService.addFarmer(this.farmer)
+      .subscribe(farmer => {
+        this.farmer = farmer;
+      });
+
+  }
+
+}

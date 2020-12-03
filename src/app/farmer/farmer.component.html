@@ -1,0 +1,235 @@
+<div class="container">
+  <div class="inner">
+    <mat-card>
+      <mat-card-content>
+        <div>          
+          <form (ngSubmit)="addFarmer()" [formGroup]="farmerForm">
+            
+            <div>
+              <mat-card-title>{{title}}</mat-card-title>
+            </div>         
+
+            <div>
+              <mat-form-field appearance="fill" >
+                <mat-label>First name</mat-label>
+                <input matInput placeholder="First name" required formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                  <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                </div>
+                <mat-hint align="end">Your first name</mat-hint>
+                <mat-icon>person</mat-icon>                
+              </mat-form-field>              
+            </div>
+            
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Surname</mat-label>
+                <input matInput placeholder="Surname" required formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                  <div *ngIf="f.lastName.errors.required">Surname is required</div>
+                </div>
+                <mat-hint align="end">Your surname</mat-hint>
+                <mat-icon>person</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>ID number</mat-label>
+                <input matInput placeholder="Identity number" required formControlName="identityNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.identityNumber.errors }">
+                <div *ngIf="f.identityNumber.errors" class="invalid-feedback">
+                  <div *ngIf="!f.identityNumber.errors.required">13 Digit SA ID number is required</div>
+                </div>
+                <mat-hint align="end">Your SA identity number</mat-hint>
+                <mat-icon>person</mat-icon>
+              </mat-form-field>
+            </div>
+            
+            <div>
+            <mat-form-field appearance="fill" >
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" required formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+              </div>
+              <mat-hint align="end">Your email</mat-hint>
+              <mat-icon>person</mat-icon>                
+            </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Mobile number</mat-label>
+                <input matInput placeholder="Mobile contact number" required formControlName="mobileNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }">
+                <div *ngIf="f.mobileNumber.errors" class="invalid-feedback">
+                  <div *ngIf="f.mobileNumber.errors.required">Your 10 digit mobile number is required</div>
+                  <div *ngIf="!f.mobileNumber.errors.minLength">Minimum length 10 digits</div>
+                  <div *ngIf="!f.mobileNumber.errors.maxLength">Max length 10 digits</div>
+                </div>
+                <mat-hint align="end">Your 10 digit mobile for example: 0824441234</mat-hint>
+                <mat-icon>contact_phone</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Office number</mat-label>
+                <input matInput placeholder="Office contact number" formControlName="officeNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.officeNumber.errors }">
+                <div *ngIf="f.officeNumber.errors" class="invalid-feedback">                  
+                  <div *ngIf="!f.officeNumber.errors.minLength">Minimum length 10 digits</div>
+                  <div *ngIf="!f.officeNumber.errors.maxLength">Max length 10 digits</div>
+                </div>
+                <mat-hint align="end">For example: 0824441235</mat-hint>
+                <mat-icon>contact_phone</mat-icon>
+              </mat-form-field>
+            </div>
+ 
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Alternative contact number</mat-label>                
+                <input matInput placeholder="Alternative contact number" formControlName="alternativeContactNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.alternativeContactNumber.errors }">
+                <div *ngIf="f.alternativeContactNumber.errors">                  
+                  <div *ngIf="!f.alternativeContactNumber.errors.minLength">Minimum length 10 digits</div>
+                  <div *ngIf="!f.alternativeContactNumber.errors.maxLength">Max length 10 digits</div>
+                </div>
+                <mat-hint align="end">For example: 0824441236</mat-hint>
+                <mat-icon>contact_phone</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Physical address</mat-label>
+                <input matInput placeholder="Physical address" required formControlName="physicalAddress" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.physicalAddress.errors }">
+                <mat-hint align="end">For example: 216 14th Avenue, Fairland, Roodepoort,Gauteng, South Africa, 2195</mat-hint>
+                <div *ngIf="f.physicalAddress.errors" class="invalid-feedback">
+                  <div *ngIf="f.physicalAddress.errors.required">Physical address is required</div>
+                </div>
+                <mat-icon>home</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Alternative email address</mat-label>
+                <input matInput placeholder="Alternative email Address" formControlName="alternativeEmailAddress" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.alternativeEmailAddress.errors }">
+                <div *ngIf="f.alternativeEmailAddress.errors" class="invalid-feedback">
+                  <div *ngIf="f.alternativeEmailAddress.errors.email">Email must be a valid email address</div>
+                </div>
+                <mat-hint align="end">For example: alternative@gmail.com</mat-hint>
+                <mat-icon>email</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Business name</mat-label>
+                <input matInput placeholder="Company/Business Name" formControlName="businessName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.businessName.errors }" >
+                <div *ngIf="submitted && f.businessName.errors" class="invalid-feedback">                  
+                  <div *ngIf="f.businessName.errors.minLength">Minimum length 2 characters</div>
+                  <div *ngIf="f.businessName.errors.maxLength">Max length 10 characters</div>
+                </div>
+                <mat-hint align="end">Business name</mat-hint>
+                <mat-icon>business</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field appearance="fill">                
+                <mat-label>Company registration number</mat-label>
+                <input matInput placeholder="Company Registration Number" formControlName="companyRegistrationNumber" class="form-control"/>
+                <mat-hint align="end">Company registration number</mat-hint>
+                <mat-icon>business</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>VAT number</mat-label>
+                <input matInput placeholder="VAT Number" formControlName="vatNumber" class="form-control"/>
+                <mat-hint align="end">VAT number</mat-hint>
+                <mat-icon>business</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Primary head office contact number</mat-label>
+                <input matInput placeholder="Primary Head Office Contact Number" formControlName="primaryHeadOfficeContactNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.primaryHeadOfficeContactNumber.errors }">
+                <div *ngIf="f.primaryHeadOfficeContactNumber.errors">                
+                  <div *ngIf="!f.primaryHeadOfficeContactNumber.errors.minLength">Minimum length 10 digits</div>
+                  <div *ngIf="!f.primaryHeadOfficeContactNumber.errors.maxLength">Max length 10 digits</div>
+                </div>
+                <mat-hint align="end">Primary head office contact number</mat-hint>
+                <mat-icon>business</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Head office physical address</mat-label>
+                <input matInput placeholder="Head office physical address" formControlName="headOfficePhysicalAddress">
+                <mat-hint align="end">Head office physical address</mat-hint>
+                <mat-icon>business</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Name of business representative</mat-label>
+                <input matInput placeholder="Name of business representative" formControlName="nameOfBusinessRepresentative">
+                <mat-hint align="end">Name of business representative</mat-hint>
+                <mat-icon>business</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Business representative contact number</mat-label>
+                <input matInput placeholder="Business representative contact number" formControlName="businessRepresentativeContactNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.businessRepresentativeContactNumber.errors }" />
+                <div *ngIf="submitted && f.businessRepresentativeContactNumber.errors">                  
+                  <div *ngIf="f.businessRepresentativeContactNumber.errors.minLength">Minimum length 10 digits</div>
+                  <div *ngIf="f.businessRepresentativeContactNumber.errors.maxLength">Max length 10 digits</div>
+                </div>
+                <mat-hint align="end">Business representative contact number</mat-hint>
+                <mat-icon>business</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Business representative email address</mat-label>
+                <input matInput placeholder="Business Representative Email Address" formControlName="businessRepresentativeEmailAddress" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.businessRepresentativeEmailAddress.errors }" />
+                <div *ngIf="submitted && f.businessRepresentativeEmailAddress.errors" class="invalid-feedback">              
+                  <div *ngIf="f.businessRepresentativeEmailAddress.errors.email">Email must be a valid email address</div>
+                </div>
+                <mat-hint align="end">Business representative email address</mat-hint>
+                <mat-icon>business</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div>              
+                <mat-form-field appearance="fill">
+                  <mat-label>Province</mat-label>          
+                  <mat-select formControlName="province" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.province.errors }">
+                    <mat-option *ngFor="let province of provinces" [value]="province.value">
+                      {{province.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                  <div *ngIf="submitted && f.province.errors" class="invalid-feedback">
+                    <div *ngIf="f.province.errors.required">Province name is required</div>
+                  </div>
+                  <mat-icon>map</mat-icon>   
+                  <mat-hint align="end">Province</mat-hint>
+                </mat-form-field>
+            </div>
+          
+            <mat-card-actions>
+              <button mat-raised-button color="primary" type="submit" >Submit</button>             
+            </mat-card-actions>
+        </form>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>

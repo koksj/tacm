@@ -1,0 +1,13 @@
+.example-card {
+    max-width: 400px;
+}
+  
+.example-header-image {
+    background-image: url('https://www.tacm.co.za/wp-content/uploads/2020/11/farmer-880567_1280.jpg');
+    background-size: cover;
+}
+
+.home {  
+  border-width: 5px;
+}
+

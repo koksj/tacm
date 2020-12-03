@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { KeycloakProfile } from 'keycloak-js';
 import { KeycloakService } from 'keycloak-angular';
-import { environment } from "./../environments/environment";
-
+import { environment } from "./../../environments/environment";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-subtool',
+  templateUrl: './subtool.component.html',
+  styleUrls: ['./subtool.component.css']
 })
-export class AppComponent {
+export class SubtoolComponent implements OnInit {
 
   title = 'TACM APP';
   userDetails: KeycloakProfile = {};
@@ -31,5 +30,6 @@ export class AppComponent {
   async doLogout() {
     await this.keycloakService.logout(environment.home);
   }
+
 
 }

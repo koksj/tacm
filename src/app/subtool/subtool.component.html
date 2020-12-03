@@ -1,0 +1,20 @@
+<mat-toolbar>
+<mat-toolbar-row>
+  
+  <button mat-menu-item routerLink="/dashboard" *ngIf="isAuthenticated">
+    <mat-icon>assignment</mat-icon>
+    <span>Dashboard</span>
+  </button>
+
+  <button mat-menu-item routerLink="/agents" *ngIf="isAuthenticated">
+    <mat-icon>people</mat-icon>
+    <span>Agents</span>
+  </button>
+
+  <button mat-menu-item *ngIf="isAuthenticated">
+    <mat-icon>menu_book</mat-icon>
+    <span>Products</span>
+  </button>
+
+  </mat-toolbar-row>
+</mat-toolbar>

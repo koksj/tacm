@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.center {
+    margin: auto;
+    width: 50%;
+    /* border: 3px solid #73AD21; */
+    padding: 10px;
+  }
+
+.mat-form-field{
+    width: 50vw
+}
+
+.container {
+  width: 100%;
+  clear: both;
+  /* border: 1px solid #73AD21; */
+}
+
+.container input {
+  width: 100%;
+  clear: both;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  
+}
+
+.inner {
+  display: table;
+  margin: 0 auto;
+  /* border: 1px solid #ad214b; */
+}
+
+.inner input {
+  width: 100%;
+  clear: both;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}

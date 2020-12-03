@@ -5,17 +5,17 @@
 import { KeycloakConfig } from 'keycloak-js';
 
 let keycloakConfig: KeycloakConfig = {
-  url: 'http://localhost:8080/auth',
+  url: 'https://sec.tacm.co.za/auth',
   realm: 'tacm',
   clientId: 'tacmapp'
 };
 
 export const environment = {
-  farmerApi: 'http://localhost/tacm',
+  farmerApi: 'https://api.tacm.co.za/tacm',
   production: false,
   envName: 'local',
   keycloak: keycloakConfig,
-  home: "http://localhost:4200"
+  home: "http://app.tacm.co.za"
 };
 
 /*

@@ -25,3 +25,14 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+# Work around for memoery error on angular openshift deployment
+https://stackoverflow.com/questions/60927514/openshift-online-failing-to-build-angular-app-out-of-memory
+
+# Deploy docker image to openshift
+https://stackoverflow.com/questions/42163602/openshift-oc-new-app-image-versus-oc-new-app-docker-image
+oc new-app --docker-image myid/myrepo:latest
+
+
+https://cookbook.openshift.org/working-with-resource-objects/how-do-i-delete-all-resource-objects-for-an-application.html

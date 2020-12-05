@@ -1,6 +1,6 @@
 # Stage 1
-
 FROM node:10-alpine as build-step
+RUN npm install -g @angular/cli
 RUN mkdir -p /app
 WORKDIR /app
 COPY package.json /app

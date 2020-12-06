@@ -36,3 +36,5 @@ oc new-app --docker-image myid/myrepo:latest
 
 
 https://cookbook.openshift.org/working-with-resource-objects/how-do-i-delete-all-resource-objects-for-an-application.html
+
+https://stackoverflow.com/questions/54360223/openshift-nginx-permission-problem-nginx-emerg-mkdir-var-cache-nginx-cli

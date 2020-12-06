@@ -57,7 +57,7 @@ export class FarmerComponent implements OnInit {
       alternativeContactNumber: new FormControl({ disabled: false, value: '' }, [Validators.minLength(10), Validators.maxLength(10)]),
       physicalAddress: new FormControl({ disabled: false, value: '' }, [Validators.required]),
       alternativeEmailAddress: new FormControl({ disabled: false, value: '' }, [Validators.email]),
-      businessName: new FormControl({ disabled: false, value: '' }, [Validators.minLength(1), Validators.maxLength(10)]),
+      businessName: new FormControl({ disabled: false, value: '' }, [Validators.minLength(1), Validators.maxLength(50)]),
       companyRegistrationNumber: new FormControl(),
       vatNumber: new FormControl(),
       primaryHeadOfficeContactNumber: new FormControl({ disabled: false, value: '' }, [Validators.minLength(10), Validators.maxLength(10)]),

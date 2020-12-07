@@ -15,7 +15,7 @@ export const environment = {
   production: false,
   envName: 'local',
   keycloak: keycloakConfig,
-  home: "https://app.tacm.co.za"
+  home: "https://www.tacm.co.za"
 };
 
 /*

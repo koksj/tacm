@@ -3,6 +3,8 @@ import { KeycloakProfile } from 'keycloak-js';
 import { KeycloakService } from 'keycloak-angular';
 import { environment } from "./../environments/environment";
 import { Router } from '@angular/router';
+import { MessageService } from './message.service';
+import { MenuItem } from './menu-item';
 
 
 @Component({
@@ -16,7 +18,19 @@ export class AppComponent {
   userDetails: KeycloakProfile = {};
   isAuthenticated: boolean = false;
 
-  constructor(private router: Router, private keycloakService: KeycloakService) { }
+  menuItems: MenuItem[] = [
+    { path: "/agents", icon: "people", title: "Agents" },
+    { path: "/products", icon: "menu_book", title: "Products" },
+    { path: "/orders", icon: "food_bank", title: "Orders" },
+  ];
+
+  myAccountMenuItems: MenuItem[] = [
+    { path: "/farmer", icon: "nature_people", title: "My Details" }    
+  ];
+
+  constructor(private router: Router, private keycloakService: KeycloakService, private messageService: MessageService) { 
+
+  }
 
   async ngOnInit() {
 
@@ -27,6 +41,8 @@ export class AppComponent {
       this.isAuthenticated = false;
     }
 
+    this.messageService.sendMessage(this.menuItems);
+
   }
 
   async doLogout() {
@@ -34,6 +50,26 @@ export class AppComponent {
     this.router.navigate(['/home']);
     await this.keycloakService.logout(environment.home);
     // this.keycloakService.logout();
+  }
+  
+  sendMessage(): void {
+   
+    this.myAccountMenuItems.forEach(item => {
+      console.log("Sending Menu items: " + item.title);
+    });
+   // send message to subscribers via observable subject
+    this.messageService.sendMessage(this.myAccountMenuItems);
+    this.router.navigate(['/farmer']);
+  }
+
+  homeMenu(): void {
+    this.messageService.sendMessage(this.menuItems);
+    this.router.navigate(['/home']);
+  }
+
+  clearMessages(): void {
+    // clear messages
+    this.messageService.clearMessage();
   }
 
 }

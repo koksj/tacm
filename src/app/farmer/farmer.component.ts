@@ -96,7 +96,7 @@ export class FarmerComponent implements OnInit {
       });
 
     } else {
-      this.title = 'Farmer information';
+      this.title = 'My details';
       this.farmerService.getFarmer(this.uid).subscribe(
         farmer => {
           this.farmerForm.patchValue(farmer);

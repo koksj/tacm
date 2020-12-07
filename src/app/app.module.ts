@@ -21,6 +21,8 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { GlobalErrorHandlerService } from './global-error-handler.service';
 import { GlobalHttpInterceptorService } from './global-http-interceptor.service';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { ProductsComponent } from './products/products.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { MyAccountComponent } from './my-account/my-account.component';
     SubtoolComponent,
     AgentsComponent,
     AgentDialogComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    ProductsComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,    

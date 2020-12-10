@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
-import { FarmerRegistrationService } from '../farmer-registration.service';
+import { DataService } from '../data.service';
 import { Registration } from '../registration';
 import { RegistrationService } from '../registration.service';
 import { Province } from './province';
-
 
 @Component({
   selector: 'app-farmer',
@@ -38,14 +37,13 @@ export class FarmerComponent implements OnInit {
     lastName: new FormControl('', [Validators.required])
   });
 
-  constructor(private farmerService: FarmerRegistrationService,
+  constructor(private dataService: DataService,
     private keycloakService: KeycloakService,
     private formBuilder: FormBuilder,
     private registrationService: RegistrationService) {
   }
 
   ngOnInit() {
-
     this.farmerForm = this.formBuilder.group({
       id: new FormControl({ disabled: false, value: '' }, [Validators.required]),
       firstName: new FormControl({ disabled: false, value: '' }, [Validators.required]),
@@ -70,12 +68,12 @@ export class FarmerComponent implements OnInit {
 
     /* Get the uuid from the keycloak server  */
     this.uid = this.keycloakService.getKeycloakInstance().tokenParsed?.sub;
-    console.log("Got uid: " + this.uid);
+    //console.log("Got uid: " + this.uid);
 
     // Let's see it the registration was completed
     this.registrationService.getRegistration(this.uid).subscribe(
       registration => {
-        console.log("getRegistration: " + registration.registrationCompleted);        
+        //console.log("getRegistration: " + registration.registrationCompleted);        
         this.populate(registration.registrationCompleted);
       }
     );
@@ -97,7 +95,7 @@ export class FarmerComponent implements OnInit {
 
     } else {
       this.title = 'My details';
-      this.farmerService.getFarmer(this.uid).subscribe(
+      this.dataService.getFarmer(this.uid).subscribe(
         farmer => {
           this.farmerForm.patchValue(farmer);
         }
@@ -129,7 +127,7 @@ export class FarmerComponent implements OnInit {
       );
     }
 
-    this.farmerService.addFarmer(this.farmerForm.value)
+    this.dataService.addFarmer(this.farmerForm.value)
       .subscribe(farmer => {
         this.farmerForm.patchValue(farmer);
       });

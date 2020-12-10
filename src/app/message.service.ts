@@ -6,12 +6,17 @@ import { MenuItem } from './menu-item';
   providedIn: 'root'
 })
 export class MessageService {
-
+  
   private subject = new Subject<any>();
-
+  
   constructor() { }
 
+  // Add a new agent 
+  addNewAgent(compMsg: string) {
+    
+  }
 
+  /**Subtoolcomponent message */
   sendMessage(menuItems: MenuItem[]) {
 
     this.subject.next(menuItems);
@@ -21,7 +26,8 @@ export class MessageService {
     this.subject.next();
   }
 
-  getMessage(): Observable<any> {
+  getMessage(): Observable<any>  {
     return this.subject.asObservable();
   }
+  
 }

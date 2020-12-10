@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { KeycloakProfile } from 'keycloak-js';
-import { KeycloakService } from 'keycloak-angular';
-import { environment } from "./../environments/environment";
 import { Router } from '@angular/router';
-import { MessageService } from './message.service';
+import { KeycloakService } from 'keycloak-angular';
+import { KeycloakProfile } from 'keycloak-js';
+import { environment } from "./../environments/environment";
 import { MenuItem } from './menu-item';
+import { MessageService } from './message.service';
 
 
 @Component({
@@ -19,16 +19,16 @@ export class AppComponent {
   isAuthenticated: boolean = false;
 
   menuItems: MenuItem[] = [
-    { path: "/agents", icon: "people", title: "Agents" },
-    { path: "/products", icon: "menu_book", title: "Products" },
-    { path: "/orders", icon: "food_bank", title: "Orders" },
+    { component: "SubtoolComponent", path: "/agents", icon: "people", title: "Agents" },
+    { component: "SubtoolComponent", path: "/products", icon: "menu_book", title: "Products" },
+    { component: "SubtoolComponent", path: "/orders", icon: "food_bank", title: "Orders" },
   ];
 
   myAccountMenuItems: MenuItem[] = [
-    { path: "/farmer", icon: "nature_people", title: "My Details" }    
+    { component: "", path: "/farmer", icon: "nature_people", title: "My Details" }
   ];
 
-  constructor(private router: Router, private keycloakService: KeycloakService, private messageService: MessageService) { 
+  constructor(private router: Router, private keycloakService: KeycloakService, private messageService: MessageService) {
 
   }
 
@@ -41,7 +41,7 @@ export class AppComponent {
       this.isAuthenticated = false;
     }
 
-    this.messageService.sendMessage(this.menuItems);
+    this.messageService.sendMessage(this.menuItems);    
 
   }
 
@@ -51,18 +51,19 @@ export class AppComponent {
     await this.keycloakService.logout(environment.home);
     // this.keycloakService.logout();
   }
-  
+
   sendMessage(): void {
-   
+
     this.myAccountMenuItems.forEach(item => {
       console.log("Sending Menu items: " + item.title);
     });
-   // send message to subscribers via observable subject
+    // send message to subscribers via observable subject
     this.messageService.sendMessage(this.myAccountMenuItems);
     this.router.navigate(['/farmer']);
   }
 
-  homeMenu(): void {
+  goToHomeMenu(): void {
+
     this.messageService.sendMessage(this.menuItems);
     this.router.navigate(['/home']);
   }

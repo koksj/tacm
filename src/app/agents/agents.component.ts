@@ -1,10 +1,13 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { KeycloakService } from 'keycloak-angular';
 import { AgentDialogComponent } from '../agent-dialog/agent-dialog.component';
 import { Agent } from '../agent/agent';
+import { DataService } from '../data.service';
 
 
 @Component({
@@ -15,23 +18,30 @@ import { Agent } from '../agent/agent';
 export class AgentsComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['first_name', 'surname', 'mobileNumber', 'email', 'businessName', 'action'];
-  dataSource = new MatTableDataSource<Agent>(AGENTS);
+ 
+  dataSource: MatTableDataSource<Agent> = new MatTableDataSource<Agent>();
 
   selection = new SelectionModel<Agent>(true, []);
 
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private dialog: MatDialog) {
+  uid: any;
+
+  constructor(private dialog: MatDialog,
+    private router: Router,
+    private keycloakService: KeycloakService,
+    private dataService: DataService) {
 
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    
   }
 
   ngOnInit(): void {
-
+    this.uid = this.keycloakService.getKeycloakInstance().tokenParsed?.sub;
+    this.getAgents(this.uid);
   }
 
   applyFilter(event: Event) {
@@ -63,42 +73,33 @@ export class AgentsComponent implements OnInit, AfterViewInit {
   }
 
   updateRowData(row_obj: Agent) {
-    
+
   }
 
-  deleteRowData(row_obj: Agent) {
+  deleteRowData(row_obj: Agent) {    
     const index = this.dataSource.data.indexOf(row_obj);
     this.dataSource.data.splice(index, 1);
-    this.dataSource._updateChangeSubscription(); // <-- Refresh the datasource
+    this.dataSource._updateChangeSubscription(); // <-- Refresh the datasource 
+    
+    this.dataService.deleteAgent(row_obj.aid).subscribe();
   }
 
+  addNewAgent() {
+    this.router.navigate(['/agent']);
+  }
+
+  viewAgent(agent: Agent) {
+    this.router.navigate(['/agent/' + agent.aid]);
+  }
+
+  /** Gets all the agents registered by the farmer */
+  getAgents(uid: any) {    
+    this.dataService.getAgents(this.uid).subscribe( 
+      agents => {
+       // console.log("Agents: " + JSON.stringify(agents));
+        this.dataSource = new MatTableDataSource<Agent>(agents);
+        this.dataSource.paginator = this.paginator
+      }
+    );    
+  }
 }
-
-const AGENTS: Agent[] = [
-  {
-    id: "",
-    firstName: "Horatio",
-    lastName: "Nelson",
-    identityNumber: "7808125354091",
-    mobileNumber: "0789991234",
-    physicalAddress: "216 14th Avenue, Fairland, Roodepoort,Gauteng, South Africa, 2195",
-    email: "aget@gmail.com",
-    businessName: "GoTo",
-    province: "Province",
-    deliveryAddress: "216 14th Avenue, Fairland, Roodepoort,Gauteng, South Africa, 2195",
-    companyRegistrationNumber: "ZX23145"
-  },
-  {
-    id: "",
-    firstName: "Hector",
-    lastName: "Fernandes",
-    identityNumber: "7808125354091",
-    mobileNumber: "0789991235",
-    physicalAddress: "216 14th Avenue, Fairland, Roodepoort,Gauteng, South Africa, 2195",
-    email: "aget@gmail.com",
-    businessName: "SellEverything",
-    province: "Province",
-    deliveryAddress: "216 14th Avenue, Fairland, Roodepoort,Gauteng, South Africa, 2195",
-    companyRegistrationNumber: "ZX23145"
-  }
-];

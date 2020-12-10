@@ -4,7 +4,7 @@
     <div>
       <mat-form-field>
         <input matInput style="display:none">
-        <button mat-raised-button (click)="openDialog('Add',{})" color="primary">Add Row</button>
+        <button mat-raised-button (click)="addNewAgent()" color="primary">Add New Agent</button>
       </mat-form-field>
     </div>
     <div>
@@ -81,9 +81,8 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> Action </th>
         <td mat-cell *matCellDef="let element" class="action-link">
-          <a href="" (click)="openDialog('View',element)">View</a>|
-          <a href="" (click)="openDialog('Update',element)">Edit</a>|
-          <a href="" (click)="openDialog('Delete',element)">Delete</a>
+          <button mat-raised-button color="accent" (click)="viewAgent(element)">View\Edit</button>        
+          <button mat-raised-button color="accent" (click)="deleteRowData(element)">Delete</button>
         </td>
       </ng-container>
 

@@ -75,18 +75,20 @@ export class AgentComponent implements OnInit, OnDestroy {
     const aid = this.route.snapshot.paramMap.get('id');
 
     if (aid) {
+      console.log("View bug!!!" + aid);
       // Set the title to new Agent
+
       this.title = "View / Edit Agent";
       this.dataService.getAgent(aid).subscribe(agent => {
         this.agentForm.patchValue(agent);
       });
-
     } else {
+      console.log("Form control: " + this.agentForm.controls['aid'].valid);
       // Check if we have a PK for the new agent
       if (!this.agentForm.controls['aid'].valid) {
         /**PK for a new agent  */
         this.dataService.getUUID().subscribe(uuId => {
-          console.log("UUID: " + uuId.uuid);
+          console.log("UUID from server: " + uuId.uuid);
           this.agentForm.patchValue({
             'aid': uuId.uuid
           });
@@ -95,12 +97,14 @@ export class AgentComponent implements OnInit, OnDestroy {
         this.title = "Create New Agent"
       }
 
+      // Set the famer id for later use
+      this.agentForm.patchValue({
+        'id': this.uid
+      });
+
     }
 
-    // Set the famer id for later use
-    this.agentForm.patchValue({
-      'id': this.uid
-    });
+
 
   }
 

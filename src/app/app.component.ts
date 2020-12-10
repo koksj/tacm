@@ -28,7 +28,10 @@ export class AppComponent {
     { component: "", path: "/farmer", icon: "nature_people", title: "My Details" }
   ];
 
-  constructor(private router: Router, private keycloakService: KeycloakService, private messageService: MessageService) {
+  constructor(
+    private router: Router, 
+    private keycloakService: KeycloakService,
+    private messageService: MessageService) {
 
   }
 

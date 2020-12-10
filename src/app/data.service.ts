@@ -57,7 +57,7 @@ export class DataService {
     const url = environment.farmerApi + '/v1/agent';
 
     return this.http.post<Agent>(url, agent, this.httpOptions).pipe(
-      tap((newFarmer: Agent) => this.log(`added farmer w/ id=${newFarmer.id}`)),
+      tap((newFarmer: Agent) => this.log(`added agent w/ id=${newFarmer.id}`)),
       catchError(this.handleError<Agent>('addAgent'))
     );
 

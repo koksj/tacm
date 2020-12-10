@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 import { DataService } from '../data.service';
+import { MenuItem } from '../menu-item';
+import { MessageService } from '../message.service';
 import { Registration } from '../registration';
 import { RegistrationService } from '../registration.service';
 import { Province } from './province';
@@ -32,15 +35,25 @@ export class FarmerComponent implements OnInit {
     { value: "province-8", viewValue: "Western Cape" },
   ];
 
+  menuItems: MenuItem[] = [
+    { component: "SubtoolComponent", path: "/agents", icon: "people", title: "Agents" },
+    { component: "SubtoolComponent", path: "/products", icon: "menu_book", title: "Products" },
+    { component: "SubtoolComponent", path: "/orders", icon: "food_bank", title: "Orders" },
+  ];
+
+
   farmerForm: FormGroup = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required])
   });
 
-  constructor(private dataService: DataService,
+  constructor(
+    private messageService: MessageService,    
+    private dataService: DataService,
     private keycloakService: KeycloakService,
     private formBuilder: FormBuilder,
-    private registrationService: RegistrationService) {
+    private registrationService: RegistrationService,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -120,7 +133,7 @@ export class FarmerComponent implements OnInit {
       this.registration.registrationCompleted = true;
       this.registrationService.addRegistration(this.registration).subscribe(
         result => {
-          console.log("Registration completed");
+         // console.log("Registration completed");
           this.registration.registrationCompleted = true;
           this.title = 'Farmer registration completed';
         }          
@@ -131,6 +144,10 @@ export class FarmerComponent implements OnInit {
       .subscribe(farmer => {
         this.farmerForm.patchValue(farmer);
       });
+
+      this.messageService.sendMessage(this.menuItems);
+      this.router.navigate(['/agents']);
+
   }
 
   // convenience getter for easy access to form fields

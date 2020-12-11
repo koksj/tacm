@@ -11,11 +11,17 @@ import { RegistrationService } from '../registration.service';
 })
 export class HomeComponent implements OnInit {
 
+  isAuthenticated: boolean = false;
+
   constructor(private router: Router, private keycloakService: KeycloakService, private registrationService: RegistrationService) {
 
   }
 
   ngOnInit() {
+
+    this.keycloakService.isLoggedIn().then(
+      (value: boolean) => { this.isAuthenticated = value }
+    );
 
     /* Get the uuid from the keycloak server  */
     const uid: any = this.keycloakService.getKeycloakInstance().tokenParsed?.sub;
@@ -42,4 +48,8 @@ export class HomeComponent implements OnInit {
 
   }
 
+  register(): void {
+    
+    window.location.href = this.keycloakService.getKeycloakInstance().createRegisterUrl();
+  }
 }

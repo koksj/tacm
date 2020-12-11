@@ -22,8 +22,9 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <!-- Redirect to agent app
-        <button mat-button color="primary">Agent</button>     
+        
+        <button mat-raised-button color="primary" [disabled]="isAuthenticated" *ngIf="!isAuthenticated" (click)="register()">Register</button>
+        <!--   
         <button mat-button color="primary">Farmer</button>        
         -->        
       </mat-card-actions>

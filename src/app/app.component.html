@@ -15,7 +15,7 @@
         <span>My Account</span>
       </button>
 
-      <button mat-menu-item routerLink="/dashboard" [disabled]="isAuthenticated" *ngIf="!isAuthenticated">
+      <button mat-menu-item [disabled]="isAuthenticated" *ngIf="!isAuthenticated" (click)="register()">
         <mat-icon>account_circle</mat-icon>
         <span>Register</span>
       </button>

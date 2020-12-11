@@ -76,4 +76,9 @@ export class AppComponent {
     this.messageService.clearMessage();
   }
 
+  register(): void {
+    
+    window.location.href = this.keycloakService.getKeycloakInstance().createRegisterUrl();
+  }
+
 }

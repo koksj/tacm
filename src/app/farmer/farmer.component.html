@@ -3,7 +3,7 @@
     <mat-card>
       <mat-card-content>
         <div>          
-          <form (ngSubmit)="addFarmer()" [formGroup]="farmerForm">
+          <form [formGroup]="farmerForm">
             
             <div>
               <mat-card-title>{{title}}</mat-card-title>
@@ -226,8 +226,13 @@
             </div>
           
             <mat-card-actions>
-              <button mat-raised-button color="primary" type="submit" >Submit</button>             
+              <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!farmerForm.dirty || !farmerForm.valid">Submit</button>
+              <span *ngIf="!farmerForm.valid" style="color:red">Please correct errors on the form above</span>
             </mat-card-actions>
+
+            <mat-card-footer >                                            
+            </mat-card-footer>
+            
         </form>
         </div>
       </mat-card-content>

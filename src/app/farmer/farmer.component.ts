@@ -117,7 +117,7 @@ export class FarmerComponent implements OnInit {
 
   }
 
-  public addFarmer(): void {
+  public onSubmit(): void {
 
     this.submitted = true;
 
@@ -153,6 +153,10 @@ export class FarmerComponent implements OnInit {
   // convenience getter for easy access to form fields
   public get f() {
     return this.farmerForm.controls;
+  }
+
+  failedValidations(): void {
+    this.farmerForm.controls
   }
 
 }

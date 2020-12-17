@@ -23,6 +23,7 @@ import { GlobalHttpInterceptorService } from './global-http-interceptor.service'
 import { MyAccountComponent } from './my-account/my-account.component';
 import { ProductsComponent } from './products/products.component';
 import { OrdersComponent } from './orders/orders.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { OrdersComponent } from './orders/orders.component';
     AgentDialogComponent,
     MyAccountComponent,
     ProductsComponent,
-    OrdersComponent
+    OrdersComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,    

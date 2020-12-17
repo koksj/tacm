@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit {
 
     /* Get the uuid from the keycloak server  */
     const uid: any = this.keycloakService.getKeycloakInstance().tokenParsed?.sub;
+    const userRoles: string[] = this.keycloakService.getUserRoles();
+    console.log(`Roles: ${userRoles}`);
 
     if (uid) {
 

@@ -45,9 +45,10 @@ export class AgentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+   
     this.agentForm = this.formBuilder.group({
       aid: new FormControl({ disabled: false, value: '' }, [Validators.required]),
-      id: new FormControl({ disabled: false, value: '' }, [Validators.required]),
+      farmer_id: new FormControl({ disabled: false, value: '' }, [Validators.required]),
       firstName: new FormControl({ disabled: false, value: '' }, [Validators.required]),
       lastName: new FormControl({ disabled: false, value: '' }, [Validators.required]),
       email: new FormControl({ disabled: false, value: '' }, [Validators.required, Validators.email]),
@@ -75,11 +76,11 @@ export class AgentComponent implements OnInit, OnDestroy {
     const aid = this.route.snapshot.paramMap.get('id');
 
     if (aid) {
-      console.log("View bug!!!" + aid);
+     // console.log("View bug!!!" + aid);
       // Set the title to new Agent
 
       this.title = "View / Edit Agent";
-      this.dataService.getAgent(aid).subscribe(agent => {
+      this.dataService.getAgent(aid).subscribe(agent => {        
         this.agentForm.patchValue(agent);
       });
     } else {
@@ -99,7 +100,7 @@ export class AgentComponent implements OnInit, OnDestroy {
 
       // Set the famer id for later use
       this.agentForm.patchValue({
-        'id': this.uid
+        'farmer_id': this.uid
       });
 
     }

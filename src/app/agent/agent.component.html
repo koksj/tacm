@@ -246,7 +246,8 @@
               </div>
             
               <mat-card-actions>
-                <button mat-raised-button color="primary" type="submit" >Submit</button>             
+                <button mat-raised-button color="primary" type="submit" [disabled]="!agentForm.dirty || !agentForm.valid" >Submit</button>
+                <span *ngIf="!agentForm.valid" style="color:red">Please correct errors on the form above</span>             
               </mat-card-actions>
           </form>
           </div>

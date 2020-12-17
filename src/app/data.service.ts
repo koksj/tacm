@@ -6,18 +6,18 @@ import { environment } from "../environments/environment";
 import { catchError, tap } from 'rxjs/operators';
 import { Agent } from './agent/agent';
 import { UUID } from './uuid';
+import { Product } from './product/product';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-
-
+        
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-
+  
   constructor(private http: HttpClient) {
 
   }
@@ -63,6 +63,17 @@ export class DataService {
 
   }
 
+  addProduct(product: Product): Observable<Product> {
+
+    const url = environment.farmerApi + '/v1/product';
+
+    return this.http.post<Product>(url, product, this.httpOptions).pipe(
+      tap((newProduct: Product) => this.log(`added product w/ id=${newProduct.productCode}`)),
+      catchError(this.handleError<Product>('addProduct'))
+    );
+    
+  }
+
   public getAgent(id: string): Observable<Agent> {
 
     const url = environment.farmerApi + '/v1/agent/' + id;
@@ -79,6 +90,14 @@ export class DataService {
     return this.http.delete<Agent>(url).pipe(
       tap(_ => this.log(`delete agent id=${id}`)),
       catchError(this.handleError<Agent>(`deleteAgent id=${id}`))
+    );
+  }
+
+  deleteProduct(productCode: string): Observable<Product> {
+    const url = environment.farmerApi + '/v1/product/' + productCode;
+    return this.http.delete<Product>(url).pipe(
+      tap(_ => this.log(`delete product id=${productCode}`)),
+      catchError(this.handleError<Product>(`deleteProduct id=${productCode}`))
     );
   }
 
@@ -125,6 +144,28 @@ export class DataService {
       tap(_ => this.log(`fetched agents for farmer id=${uid}`)),
       catchError(this.handleError<Agent[]>(`getAgents id=${uid}`))
     );
+  }
+
+  getProduct(productCode: string) {
+
+    const url = environment.farmerApi + '/v1/product/' + productCode;
+
+    return this.http.get<Product>(url).pipe(
+      tap(_ => this.log(`fetched product id=${productCode}`)),
+      catchError(this.handleError<Product>(`getAgent id=${productCode}`))
+    );
+
+  }
+
+
+  getProducts(uid: any): Observable<Product[]>  {
+    const url = environment.farmerApi + '/v1/products/' + uid;
+
+    return this.http.get<Product[]>(url).pipe(
+      tap(_ => this.log(`fetched products for farmer id=${uid}`)),
+      catchError(this.handleError<Product[]>(`getProducts id=${uid}`))
+    );
+   
   }
 
 }

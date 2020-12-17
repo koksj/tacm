@@ -57,6 +57,7 @@ export class FarmerComponent implements OnInit {
   }
 
   ngOnInit() {
+   
     this.farmerForm = this.formBuilder.group({
       id: new FormControl({ disabled: false, value: '' }, [Validators.required]),
       firstName: new FormControl({ disabled: false, value: '' }, [Validators.required]),
@@ -81,7 +82,7 @@ export class FarmerComponent implements OnInit {
 
     /* Get the uuid from the keycloak server  */
     this.uid = this.keycloakService.getKeycloakInstance().tokenParsed?.sub;
-    //console.log("Got uid: " + this.uid);
+    console.log("Got uid: " + this.uid);
 
     // Let's see it the registration was completed
     this.registrationService.getRegistration(this.uid).subscribe(

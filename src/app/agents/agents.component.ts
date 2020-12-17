@@ -41,7 +41,7 @@ export class AgentsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.uid = this.keycloakService.getKeycloakInstance().tokenParsed?.sub;
-    this.getAgents(this.uid);
+    this.getAgents();
   }
 
   applyFilter(event: Event) {
@@ -60,7 +60,7 @@ export class AgentsComponent implements OnInit, AfterViewInit {
       if (result.event == 'Add') {
         this.addRowData(result.data);
       } else if (result.event == 'Update') {
-        this.updateRowData(result.data);
+        this.updateRowData();
       } else if (result.event == 'Delete') {
         this.deleteRowData(result.data);
       }
@@ -72,7 +72,7 @@ export class AgentsComponent implements OnInit, AfterViewInit {
     this.table.renderRows();
   }
 
-  updateRowData(row_obj: Agent) {
+  updateRowData() {
 
   }
 
@@ -93,7 +93,7 @@ export class AgentsComponent implements OnInit, AfterViewInit {
   }
 
   /** Gets all the agents registered by the farmer */
-  getAgents(uid: any) {    
+  getAgents() {    
     this.dataService.getAgents(this.uid).subscribe( 
       agents => {
        // console.log("Agents: " + JSON.stringify(agents));

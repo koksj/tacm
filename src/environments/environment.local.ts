@@ -7,7 +7,7 @@ let keycloakConfig: KeycloakConfig = {
 };
 
 export const environment = {
-  farmerApi: 'http://localhost/tacm',
+  farmerApi: 'http://localhost:8081/tacm',
   production: false,
   envName: 'dev',
   keycloak: keycloakConfig,

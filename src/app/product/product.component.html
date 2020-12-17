@@ -1,0 +1,157 @@
+<div class="container">
+    <div class="inner">
+      <mat-card>
+        <mat-card-content>
+          <div>          
+            <form (ngSubmit)="addProduct()" [formGroup]="productForm">
+              
+              <div>
+                <mat-card-title>{{title}}</mat-card-title>
+              </div>
+              
+            <!--
+              <div>
+                <mat-form-field appearance="fill" >
+                  <mat-label>Agent id</mat-label>
+                  <input matInput placeholder="Sys id" required formControlName="aid" class="form-control">                 
+                  <mat-hint align="end">Agent ID</mat-hint>
+                  <mat-icon>person</mat-icon>                
+                </mat-form-field>              
+              </div>
+
+              <div>
+                <mat-form-field appearance="fill" >
+                  <mat-label>SYS id</mat-label>
+                  <input matInput placeholder="Sys id" required formControlName="id" class="form-control">                 
+                  <mat-hint align="end">Sys id</mat-hint>
+                  <mat-icon>person</mat-icon>                
+                </mat-form-field>              
+              </div>
+             --> 
+              
+              <div>
+                <mat-form-field appearance="fill" >
+                  <mat-label>Product Code</mat-label>
+                  <input matInput placeholder="Product Code" required formControlName="productCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.productCode.errors }">
+                  <div *ngIf="submitted && f.productCode.errors" class="invalid-feedback">
+                    <div *ngIf="f.productCode.errors.required">Product Code is required</div>
+                  </div>
+                  <mat-hint align="end">Your product code</mat-hint>
+                  <mat-icon>person</mat-icon>                
+                </mat-form-field>              
+              </div>
+              
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Product Description</mat-label>
+                  <input matInput placeholder="Product Description" required formControlName="productDescription" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.productDescription.errors }">
+                  <div *ngIf="submitted && f.productDescription.errors" class="invalid-feedback">
+                    <div *ngIf="f.productDescription.errors.required">Surname is required</div>
+                  </div>
+                  <mat-hint align="end">Your product description</mat-hint>
+                  <mat-icon>person</mat-icon>
+                </mat-form-field>
+              </div>
+  
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Crop Information</mat-label>
+                  <input matInput placeholder="Crop Information" formControlName="cropInformation" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cropInformation.errors }">
+                  <div *ngIf="f.cropInformation.errors" class="invalid-feedback">
+                    <div *ngIf="!f.cropInformation.errors">Crop Information</div>
+                  </div>
+                  <mat-hint align="end">Crop Information</mat-hint>
+                  <mat-icon>person</mat-icon>
+                </mat-form-field>
+              </div>
+              
+              <div>
+              <mat-form-field appearance="fill" >
+                <mat-label>Grade</mat-label>
+                <input matInput placeholder="Grade" required formControlName="grade" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.grade.errors }">
+                <div *ngIf="submitted && f.grade.errors" class="invalid-feedback">
+                  <div *ngIf="f.grade.errors.required">Grade is required</div>
+                  <div *ngIf="f.grade.errors.grade">Grade is required</div>
+                </div>
+                <mat-hint align="end">Grade</mat-hint>
+                <mat-icon>person</mat-icon>                
+              </mat-form-field>
+              </div>
+  
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Variety</mat-label>
+                  <input matInput placeholder="Variety" required formControlName="variety" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.variety.errors }">
+                  <div *ngIf="f.variety.errors" class="invalid-feedback">
+                    <div *ngIf="f.variety.errors.required">Variety is required</div>                    
+                  </div>
+                  <mat-hint align="end">Variety</mat-hint>
+                  <mat-icon>contact_phone</mat-icon>
+                </mat-form-field>
+              </div>
+  
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Size</mat-label>
+                  <input matInput placeholder="Size" formControlName="size" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.size.errors }">
+                  <div *ngIf="f.size.errors" class="invalid-feedback">                                      
+                  </div>
+                  <mat-hint align="end">For example: size</mat-hint>
+                  <mat-icon>contact_phone</mat-icon>
+                </mat-form-field>
+              </div>
+  
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Weight Per Packing</mat-label>                
+                  <input matInput placeholder="Alternative contact number" formControlName="weightPerPacking" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.weightPerPacking.errors }">
+                  <div *ngIf="f.weightPerPacking.errors">                  
+                    <div *ngIf="!f.weightPerPacking.errors.minLength">Weight Per Packing</div>                
+                  </div>
+                  <mat-hint align="end">For example: 1kg/pack</mat-hint>
+                  <mat-icon>contact_phone</mat-icon>
+                </mat-form-field>
+              </div>
+   
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Quantity Available</mat-label>
+                  <input matInput placeholder="Quantity Available" required formControlName="quantityAvailable" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.quantityAvailable.errors }">
+                  <mat-hint align="end">For example: 100 kg</mat-hint>
+                  <div *ngIf="f.quantityAvailable.errors" class="invalid-feedback">
+                    <div *ngIf="f.quantityAvailable.errors.required">Quantity Available is required</div>
+                  </div>
+                  <mat-icon>home</mat-icon>
+                </mat-form-field>
+              </div>
+  
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Date Qty Available</mat-label>
+                  <input matInput placeholder="Date Qty Available" formControlName="dateQtyAvailable" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dateQtyAvailable.errors }">
+                  <div *ngIf="f.dateQtyAvailable.errors" class="invalid-feedback">
+                    <div *ngIf="f.dateQtyAvailable.errors.email">Date Qty Available</div>
+                  </div>
+                  <mat-hint align="end">For example: 2020-01-13</mat-hint>
+                  <mat-icon>email</mat-icon>
+                </mat-form-field>
+              </div>
+  
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Addititonal Comment</mat-label>
+                  <input matInput placeholder="Addititonal Comment" formControlName="addititonalComment" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.addititonalComment.errors }" >
+                  <mat-hint align="end">Business name</mat-hint>
+                  <mat-icon>business</mat-icon>
+                </mat-form-field>
+              </div>
+              
+              <mat-card-actions>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!productForm.dirty || !productForm.valid">Submit</button>
+                <span *ngIf="!productForm.valid" style="color:red">Please correct errors on the form above</span>          
+              </mat-card-actions>
+          </form>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>

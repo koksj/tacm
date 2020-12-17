@@ -8,6 +8,7 @@ import { FarmerComponent } from './farmer/farmer.component';
 import { HomeComponent } from './home/home.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { OrdersComponent } from './orders/orders.component';
+import { ProductComponent } from './product/product.component';
 import { ProductsComponent } from './products/products.component';
 
 const routes: Routes = [
@@ -17,7 +18,9 @@ const routes: Routes = [
   { path: 'farmer', component: FarmerComponent, canActivate: [AppAuthGuard] },
   { path: 'agent', component: AgentComponent, canActivate: [AppAuthGuard] },
   { path: 'agent/:id', component: AgentComponent, canActivate: [AppAuthGuard] },
-  { path: 'agents', component: AgentsComponent, canActivate: [AppAuthGuard] },
+  { path: 'agents', component: AgentsComponent, canActivate: [AppAuthGuard] },  
+  { path: 'product', component: ProductComponent, canActivate: [AppAuthGuard] },
+  { path: 'product/:id', component: ProductComponent, canActivate: [AppAuthGuard] },
   { path: 'products', component: ProductsComponent, canActivate: [AppAuthGuard] },
   { path: 'orders', component: OrdersComponent, canActivate: [AppAuthGuard] },
   { path: 'myaccount', component: MyAccountComponent, canActivate: [AppAuthGuard] }
